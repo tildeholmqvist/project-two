@@ -61,7 +61,6 @@ function checkAnswer() {
     }
 };
 
-//js code for the button on the frontpage. when clicked it brings you to the quiz page
 window.onload = function () {
     displayQuestion();
     let submitButton = document.getElementById('submit-answer');

@@ -11,12 +11,12 @@
 header {
     font-family: 'Cormorant Garamond',
         serif;
-    background-color: aliceblue;
+    background-color: #C9EAC9;
     font-size: 150%;
     text-align: center;
     padding: 20px;
     width: 100%;
-    height: 200px;
+    height: 220px;
     position: relative;
 }
 
@@ -26,9 +26,9 @@ header {
 }
 
 #hero {
-    height: 500px;
+    height: 510px;
     width: 100%;
-    background-image: url("../images/pexels-porapak-apichodilok-346885.jpg");
+    background-image: url("../images/pexels-pixabay-269790.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -39,7 +39,7 @@ header {
     left: 50%;
     padding: 20px 40px;
     font-size: 24px;
-    background-color: #ffcc00;
+    background-color: #1ECDE8;
     color: #fff;
     border: none;
     border-radius: 10px;
@@ -56,7 +56,7 @@ body {
 
 h1 {
     font-size: 150%;
-    color: blue;
+    color: #ffff;
     padding: 20px;
     text-align: center;
     margin-top: 50px;
