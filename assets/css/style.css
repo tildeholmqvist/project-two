@@ -67,12 +67,21 @@ body {
 
 /* styling for quiz.html*/
 
+header>h1 {
+    font-size: 150%;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
 .quiz-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 20vh;
+    margin-top: 50px;
 
 }
 
@@ -90,18 +99,43 @@ body {
     z-index: 1;
 }
 
+.question {
+    font-family: 'Roboto Condensed',
+        sans-serif;
+    ;
+    font-size: 27px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.answers label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+    margin: 10px;
+    font-size: 20px;
+    font-family: 'Roboto Condensed',
+        sans-serif;
+    ;
+}
+
 .button-container {
     display: flex;
     gap: 10px;
     align-items: center;
     justify-content: center;
+    margin-top: 50px;
 }
 
-header>h1 {
-    font-size: 150%;
-    text-transform: uppercase;
-    color: #fff;
-    margin-bottom: 20px;
-    margin-top: 40px;
-
+#previous,
+#next,
+#submit {
+    font-family: 'Roboto Condensed',
+        sans-serif;
+    color: black;
+    background-color: #fff;
+    border: black 2px solid;
+    padding: 10px;
+    font-size: 15px;
 }

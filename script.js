@@ -2,90 +2,90 @@ let quizQuestions = [
     {
         question: "What's the capital of France?",
         answers: {
-            a: "Marseille",
-            b: "Paris",
-            c: "Cannes"
+            A: "Marseille",
+            B: "Paris",
+            C: "Cannes"
         },
         correctAnswer: "b"
     },
     {
         question: "What's the capital of Spain?",
         answers: {
-            a: "Madrid",
-            b: "Barcelona",
-            c: "Seville"
+            A: "Madrid",
+            B: "Barcelona",
+            C: "Seville"
         },
         correctAnswer: "a"
     },
     {
         question: "What's the capital of Germany?",
         answers: {
-            a: "Hamburg",
-            b: "Düsseldorf",
-            c: "Berlin"
+            A: "Hamburg",
+            B: "Düsseldorf",
+            C: "Berlin"
         },
         correctAnswer: "c"
     },
     {
         question: "What's the capital of Norway?",
         answers: {
-            a: "Oslo",
-            b: "Tromsø",
-            c: "Bergen"
+            A: "Oslo",
+            B: "Tromsø",
+            C: "Bergen"
         },
         correctAnswer: "a"
     },
     {
         question: "What's the capital of Greece?",
         answers: {
-            a: "Sparta",
-            b: "Athens",
-            c: "Rhodes"
+            A: "Sparta",
+            B: "Athens",
+            C: "Rhodes"
         },
         correctAnswer: "b"
     },
     {
         question: "What's the capital of Portugal?",
         answers: {
-            a: "Porto",
-            b: "Lisbon",
-            c: "Braga"
+            A: "Porto",
+            B: "Lisbon",
+            C: "Braga"
         },
         correctAnswer: "b"
     },
     {
         question: "What's the capital of Italy?",
         answers: {
-            a: "Venice",
-            b: "Milano",
-            c: "Rome"
+            A: "Venice",
+            B: "Milano",
+            C: "Rome"
         },
         correctAnswer: "c"
     },
     {
         question: "What's the capital of Czech Republic?",
         answers: {
-            a: "Brno",
-            b: "Prague",
-            c: "Liberec"
+            A: "Brno",
+            B: "Prague",
+            C: "Liberec"
         },
         correctAnswer: "b"
     },
     {
         question: "What's the capital of Sweden?",
         answers: {
-            a: "Gothenburg",
-            b: "Malmö",
-            c: "Stockholm"
+            A: "Gothenburg",
+            B: "Malmö",
+            C: "Stockholm"
         },
         correctAnswer: "c"
     },
     {
         question: "What's the capital of Austria?",
         answers: {
-            a: "Vienna",
-            b: "Salzburg",
-            c: "Innsbruck"
+            A: "Vienna",
+            B: "Salzburg",
+            C: "Innsbruck"
         },
         correctAnswer: "a"
     },
@@ -117,6 +117,7 @@ function buildQuiz() {
                 <div class="answers">${answers.join('')}</div>
             </div>`;
     });
+
 
     quizContainer.innerHTML = output;
 
@@ -167,9 +168,6 @@ function buildQuiz() {
         previousButton.style.display = 'none';
         submitButton.style.display = 'inline-block';
     }
-    let submitButton = document.getElementById('submit');
-
-    submitButton.addEventListener('click', showResults);
 
     function showResults() {
         const answerContainers = document.querySelectorAll('.answers');
@@ -198,6 +196,10 @@ function buildQuiz() {
             alert(`Please answer all questions before submitting.`);
         }
     }
+
+    let submitButton = document.getElementById('submit');
+    submitButton.addEventListener('click', showResults);
+
 }
 
 buildQuiz();
