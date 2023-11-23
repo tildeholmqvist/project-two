@@ -119,8 +119,13 @@ function buildQuiz() {
     });
 
     quizContainer.innerHTML = output;
+
+    // this code is made with help from https://www.w3schools.com/howto/howto_js_slideshow.asp 
+    //and https://www.sitepoint.com/simple-javascript-quiz/
+
     const slides = document.querySelectorAll('.slide');
     let currentSlide = 0;
+
     showSlide(currentSlide);
 
     function showSlide(n) {
@@ -149,17 +154,50 @@ function buildQuiz() {
 
     let previousButton = document.getElementById('previous');
     let nextButton = document.getElementById('next');
-    let submitButton = document.getElementById('submit');
 
     previousButton.addEventListener('click', showPreviousSlide);
     nextButton.addEventListener('click', showNextSlide);
 
     if (slides.length > 1) {
         nextButton.style.display = 'inline-block';
-        previousButton.style.display = 'none';
+        previousButton.style.display = 'inline-block';
+        submitButton.style.display = 'none';
     } else {
         nextButton.style.display = 'none';
         previousButton.style.display = 'none';
+        submitButton.style.display = 'inline-block';
+    }
+    let submitButton = document.getElementById('submit');
+
+    submitButton.addEventListener('click', showResults);
+
+    function showResults() {
+        const answerContainers = document.querySelectorAll('.answers');
+        let numCorrect = 0;
+        let allAnswered = true;
+
+        quizQuestions.forEach((currentQuestion, questionNumber) => {
+            const selector = `input[name=question${questionNumber}]:checked`;
+            const userAnswer = (answerContainers[questionNumber].querySelector(selector) || {}).value;
+
+            if (userAnswer === currentQuestion.correctAnswer) {
+                numCorrect++;
+            } else {
+                allAnswered = false;
+            }
+        });
+
+        if (allAnswered) {
+            if (numCorrect === quizQuestions.length) {
+                alert(`Congratulations! You got all answers correct!`);
+            } else {
+                alert(`You answered ${numCorrect} out of ${quizQuestions.length} correctly.`);
+            }
+            submitButton.style.display = 'none';
+        } else {
+            alert(`Please answer all questions before submitting.`);
+        }
     }
 }
+
 buildQuiz();
