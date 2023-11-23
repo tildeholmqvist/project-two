@@ -112,75 +112,54 @@ function buildQuiz() {
             );
         }
         output += `
-            <div class="question">${currentQuestion.question}</div>
-            <div class="answers">${answers.join('')}</div>`;
+            <div class="slide" style="display: none;">
+                <div class="question">${currentQuestion.question}</div>
+                <div class="answers">${answers.join('')}</div>
+            </div>`;
     });
 
     quizContainer.innerHTML = output;
-
     const slides = document.querySelectorAll('.slide');
     let currentSlide = 0;
+    showSlide(currentSlide);
 
     function showSlide(n) {
-        slides[currentSlide].classList.remove('active-slide');
-        slides[n].classList.add('active-slide');
-        currentSlide = n;
-
-        let previousButton = document.getElementById('previous');
-        let nextButton = document.getElementById('next');
-        let submitButton = document.getElementById('submit');
-
-        if (currentSlide === 0) {
-            previousButton.style.display = 'none';
-        } else {
-            previousButton.style.display = 'inline-block';
-        }
-
-        if (currentSlide === slides.length - 1) {
-            nextButton.style.display = 'none';
-            submitButton.style.display = 'inline-block';
-        } else {
-            nextButton.style.display = 'inline-block';
-            submitButton.style.display = 'none';
-        }
+        slides.forEach((slide, index) => {
+            if (index === n) {
+                slide.style.display = 'block';
+            } else {
+                slide.style.display = 'none';
+            }
+        });
     }
 
     function showNextSlide() {
-        showSlide(currentSlide + 1);
+        if (currentSlide < slides.length - 1) {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
     }
 
     function showPreviousSlide() {
-        showSlide(currentSlide - 1);
+        if (currentSlide > 0) {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
     }
 
     let previousButton = document.getElementById('previous');
     let nextButton = document.getElementById('next');
+    let submitButton = document.getElementById('submit');
 
     previousButton.addEventListener('click', showPreviousSlide);
     nextButton.addEventListener('click', showNextSlide);
 
-    showSlide(currentSlide);
-
-    submitButton.addEventListener('click', showResults);
-
-    function showResults() {
-        const answerContainers = document.querySelectorAll('.answers');
-        let numCorrect = 0;
-
-        quizQuestions.forEach((currentQuestion, questionNumber) => {
-            const selector = `input[name=question${questionNumber}]:checked`;
-            const userAnswer = (answerContainers[questionNumber].querySelector(selector) || {}).value;
-
-            if (userAnswer === currentQuestion.correctAnswer) {
-                numCorrect++;
-                alert(`Good Job! You got it right!`);
-            } else {
-                alert(`That is not the right answer, try again!`);
-            }
-        });
-
-        const resultsContainer = document.getElementById('result');
-        resultsContainer.innerHTML = `${numCorrect} out of ${quizQuestions.length}`;
+    if (slides.length > 1) {
+        nextButton.style.display = 'inline-block';
+        previousButton.style.display = 'none';
+    } else {
+        nextButton.style.display = 'none';
+        previousButton.style.display = 'none';
     }
 }
 buildQuiz();
