@@ -1,68 +1,140 @@
-/**
-    * js code for the questions in the quiz. 
-    * instead of writing the questions on the html file, i did it in the js file, 
-    * so when the user wants to answer the next question, it changes without having to enter another page
-    */
-
-const quizQuestions = [
+let quizQuestions = [
     {
-        question: 'What is the capital of France?',
-        image: 'paris.jpg',
-        correctAnswer: ['Paris', 'PARIS', 'paris'],
+        question: "What's the capital of France?",
+        answers: {
+            a: "Marseille",
+            b: "Paris",
+            c: "Cannes"
+        },
+        correctAnswer: "b"
     },
     {
-        question: 'What is the capital of Germany?',
-        image: 'berlin.jpg',
-        correctAnswer: ['Berlin', 'BERLIN', 'berlin'],
+        question: "What's the capital of Spain?",
+        answers: {
+            a: "Madrid",
+            b: "Barcelona",
+            c: "Seville"
+        },
+        correctAnswer: "a"
     },
     {
-        question: 'What is the capital of Denmark?',
-        image: 'copenhagen.jpg',
-        correctAnswer: ['Copenhagen', 'COPENHAGEN', 'copenhagen'],
+        question: "What's the capital of Germany?",
+        answers: {
+            a: "Hamburg",
+            b: "Düsseldorf",
+            c: "Berlin"
+        },
+        correctAnswer: "c"
     },
     {
-        question: 'What is the capital of Italy?',
-        image: 'rome.jpg',
-        correctAnswer: ['Rome', 'ROME', 'rome'],
+        question: "What's the capital of Norway?",
+        answers: {
+            a: "Oslo",
+            b: "Tromsø",
+            c: "Bergen"
+        },
+        correctAnswer: "a"
     },
     {
-        question: 'What is the capital of Sweden?',
-        image: 'stockholm.jpg',
-        correctAnswer: ['Stockholm', 'STOCKHOLM', 'stockholm'],
+        question: "What's the capital of Greece?",
+        answers: {
+            a: "Sparta",
+            b: "Athens",
+            c: "Rhodes"
+        },
+        correctAnswer: "b"
     },
     {
-        question: 'What is the capital of Greece?',
-        image: 'athens.jpg',
-        correctAnswer: ['Athens', 'ATHENS', 'athens'],
+        question: "What's the capital of Portugal?",
+        answers: {
+            a: "Porto",
+            b: "Lisbon",
+            c: "Braga"
+        },
+        correctAnswer: "b"
+    },
+    {
+        question: "What's the capital of Italy?",
+        answers: {
+            a: "Venice",
+            b: "Milano",
+            c: "Rome"
+        },
+        correctAnswer: "c"
+    },
+    {
+        question: "What's the capital of Czech Republic?",
+        answers: {
+            a: "Brno",
+            b: "Prague",
+            c: "Liberec"
+        },
+        correctAnswer: "b"
+    },
+    {
+        question: "What's the capital of Sweden?",
+        answers: {
+            a: "Gothenburg",
+            b: "Malmö",
+            c: "Stockholm"
+        },
+        correctAnswer: "c"
+    },
+    {
+        question: "What's the capital of Austria?",
+        answers: {
+            a: "Vienna",
+            b: "Salzburg",
+            c: "Innsbruck"
+        },
+        correctAnswer: "a"
     },
 ];
 
-let currentQuestionIndex = 0;
+function buildQuiz() {
+    const quizContainer = document.getElementById('quiz');
+    let output = '';
 
-function displayQuestion() {
-    console.log("Current Question:", quizQuestions[currentQuestionIndex]);
-    let currentQuestion = quizQuestions[currentQuestionIndex];
-    console.log('Question Element:', document.getElementById('quiz-question'));
-    console.log('Image Element:', document.getElementById('question-image'));
-    document.getElementById('quiz-question').textContent = currentQuestion.question;
-    document.getElementById('question-image').src = currentQuestion.image;
+    quizQuestions.forEach((currentQuestion, questionNumber) => {
+        let answers = [];
+        for (let letter in currentQuestion.answers) {
+            answers.push(
+                `<label>
+                    <input type="radio" name="question${questionNumber}" value="${letter}">
+                    ${letter} : ${currentQuestion.answers[letter]}
+                </label>`
+            );
+        }
+        output += `
+            <div class="question">${currentQuestion.question}</div>
+            <div class="answers">${answers.join('')}</div>`;
+    });
+
+    quizContainer.innerHTML = output;
 }
 
-function checkAnswer() {
-    let userAnswer = document.getElementById("user-answer").value.toLowerCase();
-    let correctAnswers = quizQuestions[currentQuestionIndex].correctAnswer;
+function showResults() {
+    const quizContainer = document.getElementById('quiz');
+    const answerContainers = quizContainer.querySelectorAll('.answers');
+    let numCorrect = 0;
 
-    if (correctAnswers.includes(userAnswer)) {
-        alert(`You got it right! Good Job! :) `);
+    quizQuestions.forEach((currentQuestion, questionNumber) => {
+        const selector = `input[name=question${questionNumber}]:checked`;
+        const userAnswer = (answerContainers[questionNumber].querySelector(selector) || {}).value;
 
-    } else {
-        let correctAnswer = quizQuestions[currentQuestionIndex].correctAnswer[0];
-        alert(`You answered ${userAnswer}. The correct answer was ${correctAnswer}!`);
-    }
-};
+        if (userAnswer === currentQuestion.correctAnswer) {
+            numCorrect++;
+            alert(`Good Job! You got it right!`);
+        } else {
+            answerContainers[questionNumber].alert(`That is not the right answer, try again!`);
+        }
+    });
 
-window.onload = function () {
-    displayQuestion();
-    let submitButton = document.getElementById('submit-answer');
-    submitButton.addEventListener('click', checkAnswer);
-};
+    const resultsContainer = document.getElementById('result');
+    resultsContainer.innerHTML = `${numCorrect} out of ${quizQuestions.length}`;
+}
+
+const submitButton = document.getElementById('submit');
+submitButton.addEventListener('click', showResults);
+
+buildQuiz();

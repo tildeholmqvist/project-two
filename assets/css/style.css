@@ -28,7 +28,7 @@ header {
 #hero {
     height: 510px;
     width: 100%;
-    background-image: url("../images/pexels-pixabay-269790.jpg");
+    background-image: url("../images/elena-mozhvilo-znhEe1cbbQE-unsplash.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -56,7 +56,7 @@ body {
 
 h1 {
     font-size: 150%;
-    color: #ffff;
+    color:black;
     padding: 20px;
     text-align: center;
     margin-top: 50px;
