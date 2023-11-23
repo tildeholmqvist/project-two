@@ -91,6 +91,7 @@ let quizQuestions = [
     },
 ];
 
+let submitButton;
 /**
  * This code is from https://www.sitepoint.com/simple-javascript-quiz/
  * I took help from that site to get the result that I wished for, since the 
@@ -172,7 +173,6 @@ function buildQuiz() {
     function showResults() {
         const answerContainers = document.querySelectorAll('.answers');
         let numCorrect = 0;
-        let allAnswered = true;
 
         quizQuestions.forEach((currentQuestion, questionNumber) => {
             const selector = `input[name=question${questionNumber}]:checked`;
@@ -180,26 +180,20 @@ function buildQuiz() {
 
             if (userAnswer === currentQuestion.correctAnswer) {
                 numCorrect++;
-            } else {
-                allAnswered = false;
             }
         });
+        const correctScore = document.getElementById('score');
+        correctScore.textContent = numCorrect; // Update correct score
 
-        if (allAnswered) {
-            if (numCorrect === quizQuestions.length) {
-                alert(`Congratulations! You got all answers correct!`);
-            } else {
-                alert(`You answered ${numCorrect} out of ${quizQuestions.length} correctly.`);
-            }
-            submitButton.style.display = 'none';
+        if (numCorrect === quizQuestions.length) {
+            alert(`Congratulations! You got all answers correct!`);
         } else {
-            alert(`Please answer all questions before submitting.`);
+            alert(`You answered ${numCorrect} out of ${quizQuestions.length} correctly.`);
         }
     }
-
-    let submitButton = document.getElementById('submit');
-    submitButton.addEventListener('click', showResults);
-
 }
 
 buildQuiz();
+
+submitButton = document.getElementById('submit');
+submitButton.addEventListener('click', showResults);
