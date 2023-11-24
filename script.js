@@ -89,6 +89,12 @@ let quizQuestions = [
         },
         correctAnswer: "A"
     },
+     {
+        question: "Good Job! You completed the Quiz! Submit and see how you did!",
+        answers: {},
+        correctAnswer: ""
+    }
+
 ];
 
 let submitButton;

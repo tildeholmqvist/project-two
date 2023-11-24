@@ -139,3 +139,23 @@ header>h1 {
     padding: 10px;
     font-size: 15px;
 }
+
+.score-area {
+    font-size: 140%; 
+    text-align: center; 
+    margin-top: 75px; 
+    font-family: 'Roboto Condensed',
+        sans-serif;
+    border-radius: 8px;
+    width: 350px;
+    height: 70px;
+    background-color:#9BDFF5;
+    padding: 15px;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   color: #fff;
+}
+
+.score-area span {
+  display: block;
+}
