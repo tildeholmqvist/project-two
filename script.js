@@ -174,31 +174,36 @@ function buildQuiz() {
 }
 
 function showResults() {
-    let answerContainers = document.querySelectorAll('.answers');
+    let slides = document.querySelectorAll('.slide');
     let numCorrect = 0;
+    let incorrectAnswers = '';
 
-    quizQuestions.forEach((currentQuestion, questionNumber) => {
+    slides.forEach((slide, questionNumber) => {
         let selector = `input[name=question${questionNumber}]:checked`;
-        let userAnswer = (answerContainers[questionNumber].querySelector(selector) || {}).value;
-
-        if (userAnswer === currentQuestion.correctAnswer) {
+        let userAnswer = slide.querySelector(selector);
+        
+        if (userAnswer !== null) {
+            userAnswer = userAnswer.value.toUpperCase(); 
+            let correctAnswer = quizQuestions[questionNumber].correctAnswer.toUpperCase();
+        if (userAnswer === correctAnswer) {
             numCorrect++;
-            alert(`Question ${questionNumber + 1}: You got it right!`);
         } else {
-            alert(`Question ${questionNumber + 1}: Wrong answer. The correct answer is ${currentQuestion.answers[currentQuestion.correctAnswer]}.`);
+            incorrectAnswers += `Question ${questionNumber + 1}: The correct answer is ${quizQuestions[questionNumber].answers[quizQuestions[questionNumber].correctAnswer]}\n`;
         }
-        alert.close()
+        }
     });
+
+     if (incorrectAnswers !== '') {
+        alert(`You need to practice some more...
+         ${numCorrect} out of ${quizQuestions.length} correct!\n\nIncorrect Answers:\n${incorrectAnswers}`);
+    } else {
+        alert(`Wow! Good Job! You really know your capital cities!
+         You got all ${quizQuestions.length} questions right! :D`);
+    }
+
     const scoreboard = document.getElementById('score');
     scoreboard.textContent = numCorrect;
-
-
-    if (numCorrect === quizQuestions.length) {
-        alert(`Congratulations! You got all answers correct!`);
-    } else {
-        alert(`You answered ${numCorrect} out of ${quizQuestions.length} correctly.`);
-    }
-}
+} 
 
 buildQuiz();
 
@@ -208,3 +213,4 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log(submitButton);
     submitButton.addEventListener('click', showResults);
 });
+
