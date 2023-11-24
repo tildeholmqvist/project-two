@@ -92,12 +92,14 @@ let quizQuestions = [
 ];
 
 let submitButton;
+
 /**
  * This code is from https://www.sitepoint.com/simple-javascript-quiz/
  * I took help from that site to get the result that I wished for, since the 
  * quiz wasn't working how I wanted it too.. 
  * I wished for the questions to not be on top of eachother, but in a loop, this was the most convinent way I found
  */
+
 function buildQuiz() {
     const quizContainer = document.getElementById('quiz');
     let output = '';
@@ -163,37 +165,44 @@ function buildQuiz() {
     if (slides.length > 1) {
         nextButton.style.display = 'inline-block';
         previousButton.style.display = 'inline-block';
-        submitButton.style.display = 'none';
+
     } else {
         nextButton.style.display = 'none';
         previousButton.style.display = 'none';
-        submitButton.style.display = 'inline-block';
+
     }
+}
 
-    function showResults() {
-        const answerContainers = document.querySelectorAll('.answers');
-        let numCorrect = 0;
+function showResults() {
+    let answerContainers = document.querySelectorAll('.answers');
+    let numCorrect = 0;
 
-        quizQuestions.forEach((currentQuestion, questionNumber) => {
-            const selector = `input[name=question${questionNumber}]:checked`;
-            const userAnswer = (answerContainers[questionNumber].querySelector(selector) || {}).value;
+    quizQuestions.forEach((currentQuestion, questionNumber) => {
+        const selector = `input[name=question${questionNumber}]:checked`;
+        const userAnswer = (answerContainers[questionNumber].querySelector(selector) || {}).value;
 
-            if (userAnswer === currentQuestion.correctAnswer) {
-                numCorrect++;
-            }
-        });
-        const correctScore = document.getElementById('score');
-        correctScore.textContent = numCorrect; // Update correct score
-
-        if (numCorrect === quizQuestions.length) {
-            alert(`Congratulations! You got all answers correct!`);
+        if (userAnswer === currentQuestion.correctAnswer) {
+            numCorrect++;
+            alert(`${questionNumber + 1}: You got it right!`);
         } else {
-            alert(`You answered ${numCorrect} out of ${quizQuestions.length} correctly.`);
+            alert(`${questionNumber + 1}: Wrong answer. The correct answer is ${currentQuestion.answers[currentQuestion.correctAnswer]}.`);
         }
+    });
+    const correctScore = document.getElementById('score');
+    correctScore.textContent = numCorrect; // Update correct score
+
+    if (numCorrect === quizQuestions.length) {
+        alert(`Congratulations! You got all answers correct!`);
+    } else {
+        alert(`You answered ${numCorrect} out of ${quizQuestions.length} correctly.`);
     }
 }
 
 buildQuiz();
 
-submitButton = document.getElementById('submit');
-submitButton.addEventListener('click', showResults);
+document.addEventListener('DOMContentLoaded', function () {
+
+    let submitButton = document.getElementById('submit');
+    console.log(submitButton);
+    submitButton.addEventListener('click', showResults);
+});
