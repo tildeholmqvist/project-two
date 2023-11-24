@@ -6,7 +6,7 @@ let quizQuestions = [
             B: "Paris",
             C: "Cannes"
         },
-        correctAnswer: "b"
+        correctAnswer: "B"
     },
     {
         question: "What's the capital of Spain?",
@@ -15,7 +15,7 @@ let quizQuestions = [
             B: "Barcelona",
             C: "Seville"
         },
-        correctAnswer: "a"
+        correctAnswer: "A"
     },
     {
         question: "What's the capital of Germany?",
@@ -24,7 +24,7 @@ let quizQuestions = [
             B: "Düsseldorf",
             C: "Berlin"
         },
-        correctAnswer: "c"
+        correctAnswer: "C"
     },
     {
         question: "What's the capital of Norway?",
@@ -33,7 +33,7 @@ let quizQuestions = [
             B: "Tromsø",
             C: "Bergen"
         },
-        correctAnswer: "a"
+        correctAnswer: "A"
     },
     {
         question: "What's the capital of Greece?",
@@ -42,7 +42,7 @@ let quizQuestions = [
             B: "Athens",
             C: "Rhodes"
         },
-        correctAnswer: "b"
+        correctAnswer: "B"
     },
     {
         question: "What's the capital of Portugal?",
@@ -51,7 +51,7 @@ let quizQuestions = [
             B: "Lisbon",
             C: "Braga"
         },
-        correctAnswer: "b"
+        correctAnswer: "B"
     },
     {
         question: "What's the capital of Italy?",
@@ -60,7 +60,7 @@ let quizQuestions = [
             B: "Milano",
             C: "Rome"
         },
-        correctAnswer: "c"
+        correctAnswer: "C"
     },
     {
         question: "What's the capital of Czech Republic?",
@@ -69,7 +69,7 @@ let quizQuestions = [
             B: "Prague",
             C: "Liberec"
         },
-        correctAnswer: "b"
+        correctAnswer: "B"
     },
     {
         question: "What's the capital of Sweden?",
@@ -78,7 +78,7 @@ let quizQuestions = [
             B: "Malmö",
             C: "Stockholm"
         },
-        correctAnswer: "c"
+        correctAnswer: "C"
     },
     {
         question: "What's the capital of Austria?",
@@ -87,7 +87,7 @@ let quizQuestions = [
             B: "Salzburg",
             C: "Innsbruck"
         },
-        correctAnswer: "a"
+        correctAnswer: "A"
     },
 ];
 
@@ -178,18 +178,20 @@ function showResults() {
     let numCorrect = 0;
 
     quizQuestions.forEach((currentQuestion, questionNumber) => {
-        const selector = `input[name=question${questionNumber}]:checked`;
-        const userAnswer = (answerContainers[questionNumber].querySelector(selector) || {}).value;
+        let selector = `input[name=question${questionNumber}]:checked`;
+        let userAnswer = (answerContainers[questionNumber].querySelector(selector) || {}).value;
 
         if (userAnswer === currentQuestion.correctAnswer) {
             numCorrect++;
-            alert(`${questionNumber + 1}: You got it right!`);
+            alert(`Question ${questionNumber + 1}: You got it right!`);
         } else {
-            alert(`${questionNumber + 1}: Wrong answer. The correct answer is ${currentQuestion.answers[currentQuestion.correctAnswer]}.`);
+            alert(`Question ${questionNumber + 1}: Wrong answer. The correct answer is ${currentQuestion.answers[currentQuestion.correctAnswer]}.`);
         }
+        alert.close()
     });
-    const correctScore = document.getElementById('score');
-    correctScore.textContent = numCorrect; // Update correct score
+    const scoreboard = document.getElementById('score');
+    scoreboard.textContent = numCorrect;
+
 
     if (numCorrect === quizQuestions.length) {
         alert(`Congratulations! You got all answers correct!`);
