@@ -88,11 +88,6 @@ let quizQuestions = [
             C: "Innsbruck"
         },
         correctAnswer: "A"
-    },
-     {
-        question: "Good Job! You completed the Quiz! Submit and see how you did!",
-        answers: {},
-        correctAnswer: ""
     }
 
 ];
@@ -181,25 +176,36 @@ function buildQuiz() {
 
 function showResults() {
     let slides = document.querySelectorAll('.slide');
+    let numQuestions = quizQuestions.length;
     let numCorrect = 0;
     let incorrectAnswers = '';
 
+    let answeredQuestions = 0;
+
     slides.forEach((slide, questionNumber) => {
-        let selector = `input[name=question${questionNumber}]:checked`;
-        let userAnswer = slide.querySelector(selector);
-        
-        if (userAnswer !== null) {
-            userAnswer = userAnswer.value.toUpperCase(); 
-            let correctAnswer = quizQuestions[questionNumber].correctAnswer.toUpperCase();
-        if (userAnswer === correctAnswer) {
-            numCorrect++;
-        } else {
-            incorrectAnswers += `Question ${questionNumber + 1}: The correct answer is ${quizQuestions[questionNumber].answers[quizQuestions[questionNumber].correctAnswer]}\n`;
-        }
+        if (questionNumber < numQuestions) {
+            let selector = `input[name=question${questionNumber}]:checked`;
+            let userAnswer = slide.querySelector(selector);
+
+            if (userAnswer !== null) {
+                answeredQuestions++;
+                userAnswer = userAnswer.value.toUpperCase();
+                let correctAnswer = quizQuestions[questionNumber].correctAnswer.toUpperCase();
+                if (userAnswer === correctAnswer) {
+                    numCorrect++;
+                } else {
+                    incorrectAnswers += `Question ${questionNumber + 1}: The correct answer is ${quizQuestions[questionNumber].answers[quizQuestions[questionNumber].correctAnswer]}\n`;
+                }
+            }
         }
     });
 
-     if (incorrectAnswers !== '') {
+    if (answeredQuestions < 1) {
+        alert(`You have to answer a question before you can submit! :) `);
+        return;
+    }
+
+    if (incorrectAnswers !== '') {
         alert(`You need to practice some more...
          ${numCorrect} out of ${quizQuestions.length} correct!\n\nIncorrect Answers:\n${incorrectAnswers}`);
     } else {
@@ -209,7 +215,7 @@ function showResults() {
 
     const scoreboard = document.getElementById('score');
     scoreboard.textContent = numCorrect;
-} 
+}
 
 buildQuiz();
 
