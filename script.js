@@ -200,8 +200,8 @@ function showResults() {
         }
     });
 
-    if (answeredQuestions < 1) {
-        alert(`You have to answer a question before you can submit! :) `);
+    if (answeredQuestions < numQuestions) {
+        alert(`You have to answered ${answeredQuestions} out of ${numQuestions} questions. Please provide your answers before submitting! :)`);
         return;
     }
 
