@@ -11,7 +11,7 @@
 header {
     font-family: 'Roboto Condensed',
         sans-serif;
-    background-color: #9BDFF5;
+    background-color: #75D1FF;
     font-size: 150%;
     text-align: center;
     padding: 20px;
@@ -52,12 +52,17 @@ header {
     left: 50%;
     padding: 20px 40px;
     font-size: 24px;
-    background-color: #1ECDE8;
+    background-color: #75D1FF;
+    background-color: ;
     color: #fff;
     border: none;
     border-radius: 10px;
     align-items: center;
     transform: translate(-50%, -50%);
+}
+
+#start-quiz:hover {
+    text-decoration: underline;
 }
 
 #body-quiz {
@@ -73,8 +78,15 @@ header {
     text-transform: uppercase;
     color: #fff;
     margin-bottom: 20px;
-    margin-top: 40px;
+    margin-top: 50px;
+}
+
+a {
     text-decoration: none;
+}
+
+#quiz-header:hover {
+    text-decoration: underline;
 }
 
 .quiz-container {
@@ -142,7 +154,7 @@ header {
     background-color: #fff;
     border: black 2px solid;
     padding: 10px;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 .score-area {
@@ -153,8 +165,8 @@ header {
         sans-serif;
     border-radius: 8px;
     width: 350px;
-    height: 100px;
-    background-color: #9BDFF5;
+    height: 120px;
+    background-color: #75D1FF;
     padding-top: 25px;
     margin-top: 40px;
     margin-bottom: 10px;
@@ -167,13 +179,18 @@ header {
     display: block;
 }
 
+#score {
+    font-size: 150%;
+    padding: 2px;
+}
+
 
 @media screen and (max-width: 540px) {
 
     header {
         font-family: 'Roboto Condensed',
             sans-serif;
-        background-color: #9BDFF5;
+        background-color: #75D1FF;
         font-size: 150%;
         text-align: center;
         padding: 20px;
@@ -240,7 +257,7 @@ header {
         border-radius: 8px;
         width: 200px;
         height: 100px;
-        background-color: #9BDFF5;
+        background-color: #75D1FF;
         padding: 15px;
         margin-top: 20px;
         margin-bottom: 10px;
