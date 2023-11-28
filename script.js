@@ -122,6 +122,11 @@ function buildQuiz() {
             </div>`;
     });
 
+    output += `
+        <div class="slide" style="display: none;">
+            <div class="question">Good Job! <br> Submit and see how you did!</div>
+        </div>`;
+
 
     quizContainer.innerHTML = output;
 
