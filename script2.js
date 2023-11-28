@@ -107,87 +107,115 @@ let quizQuestions = [
  * quiz wasn't working how I wanted it too.. 
  * I wished for the questions to not be on top of eachother, but in a loop, this was the most convinent way I found
  */
-let currentQuestion = 0;
 
 function buildQuiz() {
-    showQuestion(currentQuestion);
-}
-function showQuestion(questionNumber) {
     const quizContainer = document.getElementById('quiz');
-    const currentQ = quizQuestions[questionNumber];
     let output = '';
 
-    output += `
-        <div class="question-slide">
-            <div class="question">${currentQ.question}</div>
-            <button onclick="checkAnswer('${currentQ.answers.A}')">${currentQ.answers.A}</button>
-            <button onclick="checkAnswer('${currentQ.answers.B}')">${currentQ.answers.B}</button>
-            <button onclick="checkAnswer('${currentQ.answers.C}')">${currentQ.answers.C}</button>
-        </div>`;
-
-    quizContainer.innerHTML = output;
-}
-
-function checkAnswer(selectedAnswer) {
-    let correctAnswer = quizQuestions[currentQuestion].correctAnswer.toUpperCase();
-    let isCorrect = selectedAnswer.toUpperCase() === correctAnswer;
-
-    if (isCorrect) {
-        numCorrect++;
-    } else {
-
-    }
-    currentQuestion++;
-    if (currentQuestion < quizQuestions.length) {
-        showQuestion(currentQuestion);
-    } else {
-        showResults();
-    }
-}
-
-
-
-function showResults() {
-    let slides = document.querySelectorAll('.slide');
-    let numQuestions = quizQuestions.length;
-    let numCorrect = 0;
-    let incorrectAnswers = '';
-
-    let answeredQuestions = 0;
-
-    slides.forEach((slide, questionNumber) => {
-        if (questionNumber < numQuestions) {
-            let selector = `input[name=question${questionNumber}]:checked`;
-            let userAnswer = slide.querySelector(selector);
-
-            if (userAnswer !== null) {
-                answeredQuestions++;
-                userAnswer = userAnswer.value.toUpperCase();
-                let correctAnswer = quizQuestions[questionNumber].correctAnswer.toUpperCase();
-                if (userAnswer === correctAnswer) {
-                    numCorrect++;
-                } else {
-                    incorrectAnswers += `Question ${questionNumber + 1}: The correct answer is ${quizQuestions[questionNumber].answers[quizQuestions[questionNumber].correctAnswer]}\n`;
-                }
-            }
+    quizQuestions.forEach((currentQuestion, questionNumber) => {
+        let answers = [];
+        for (let letter in currentQuestion.answers) {
+            answers.push(
+                `<label>
+                    <input type="radio" name="question${questionNumber}" value="${letter}">
+                    ${letter} : ${currentQuestion.answers[letter]}
+                </label>`
+            );
         }
+        output += `
+            <div class="slide" style="display: none;">
+                <div class="question">${currentQuestion.question}</div>
+                <div class="answers">${answers.join('')}</div>
+            </div>`;
     });
 
-    if (answeredQuestions < numQuestions) {
-        alert(`You have answered ${answeredQuestions} out of ${numQuestions} questions. Please provide all of your answers before submitting! :)`);
-        return;
+
+    quizContainer.innerHTML = output;
+
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    showSlide(currentSlide);
+
+    function showSlide(n) {
+        slides.forEach((slide, index) => {
+            if (index === n) {
+                slide.style.display = 'block';
+            } else {
+                slide.style.display = 'none';
+            }
+        });
     }
 
-    if (incorrectAnswers !== '') {
-        alert(`You need to practice some more...
+    function showNextSlide() {
+        let currentSlideElement = slides[currentSlide];
+        let radios = currentSlideElement.querySelectorAll('input[type="radio"]:checked');
+
+        if (radios.length > 0) {
+            currentSlideElement.style.display = 'none';
+
+            currentSlide++;
+            if (currentSlide < slides.length) {
+                slides[currentSlide].style.display = 'block';
+            } else {
+                showResults();
+            }
+        } else {
+            alert('Please select your answer before moving to the next question! :)');
+        }
+    }
+
+    slides.forEach(slide => {
+        const radios = slide.querySelectorAll('input[type="radio"]');
+        radios.forEach(radio => {
+            radio.addEventListener('change', showNextSlide);
+        });
+    });
+
+    function showResults() {
+        let slides = document.querySelectorAll('.slide');
+        let numQuestions = quizQuestions.length;
+        let numCorrect = 0;
+        let incorrectAnswers = '';
+
+        let answeredQuestions = 0;
+
+        slides.forEach((slide, questionNumber) => {
+            if (questionNumber < numQuestions) {
+                let selector = `input[name=question${questionNumber}]:checked`;
+                let userAnswer = slide.querySelector(selector);
+
+                if (userAnswer !== null) {
+                    answeredQuestions++;
+                    userAnswer = userAnswer.value.toUpperCase();
+                    let correctAnswer = quizQuestions[questionNumber].correctAnswer.toUpperCase();
+                    if (userAnswer === correctAnswer) {
+                        numCorrect++;
+                    } else {
+                        incorrectAnswers += `Question ${questionNumber + 1}: The correct answer is ${quizQuestions[questionNumber].answers[quizQuestions[questionNumber].correctAnswer]}\n`;
+                    }
+                }
+            }
+        });
+
+        if (answeredQuestions < numQuestions) {
+            alert(`You have answered ${answeredQuestions} out of ${numQuestions} questions. Please provide all of your answers before submitting! :)`);
+            return;
+        }
+
+        if (incorrectAnswers !== '') {
+            alert(`You need to practice some more...
          ${numCorrect} out of ${quizQuestions.length} correct!\n\nIncorrect Answers:\n${incorrectAnswers}`);
-    } else {
-        alert(`Wow! Good Job! You really know your capital cities!
+        } else {
+            alert(`Wow! Good Job! You really know your capital cities!
          You got all ${quizQuestions.length} questions right! :D`);
-    }
+        }
 
-    const scoreboard = document.getElementById('score');
-    scoreboard.textContent = numCorrect;
+        const scoreboard = document.getElementById('score');
+        scoreboard.textContent = numCorrect;
+    }
 }
 
-buildQuiz();
+document.addEventListener('DOMContentLoaded', function () {
+    buildQuiz();
+});
