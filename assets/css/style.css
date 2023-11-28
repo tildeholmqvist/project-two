@@ -41,7 +41,7 @@ header {
 #hero {
     height: 510px;
     width: 100%;
-    background-image: url("../images/elena-mozhvilo-znhEe1cbbQE-unsplash.jpg");
+    background-image: url("../images/bodyimg.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -66,7 +66,7 @@ header {
 }
 
 #body-quiz {
-    background-image: url("../images/elena-mozhvilo-znhEe1cbbQE-unsplash.jpg");
+    background-image: url("../images/bodyimg.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -295,7 +295,7 @@ a {
     }
 
     #body-quiz {
-        background-image: url("../images/elena-mozhvilo-znhEe1cbbQE-unsplash.jpg");
+        background-image: url("../images/bodyimg.jpg");
         background-size: cover;
         background-position: center;
         width: 100%;
