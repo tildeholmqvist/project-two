@@ -201,7 +201,7 @@ function showResults() {
     });
 
     if (answeredQuestions < numQuestions) {
-        alert(`You have to answered ${answeredQuestions} out of ${numQuestions} questions. Please provide your answers before submitting! :)`);
+        alert(`You have answered ${answeredQuestions} out of ${numQuestions} questions. Please provide all of your answers before submitting! :)`);
         return;
     }
 
