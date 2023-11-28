@@ -8,6 +8,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <title>Test Your Geography Skills!</title>
   </head>
+
   <body id="body-quiz" aria-label="a painting of a earth-globe">
     <header>
       <a href="index.html">
@@ -16,15 +17,19 @@
     </header>
     <!--This code is partly from https://www.sitepoint.com/simple-javascript-quiz/
     to get the right result for my quiz with my javascript-->
-    <div class="quiz-questions">
-      <div id="quiz" class="quiz-container"></div>
-    </div>
+    <div class="quiz-container">
+      <div id="quiz" class="quiz-questions">
+        <h3 id="question-text">Question</h3>
+        <button id="option1">01</button>
+        <button id="option2">02</button>
+        <button id="option3">03</button>
+        </div>
     <div id="result"></div>
     <div class="score-area">
       <p class="scores">
         You got this many right answers: <span id="score">0</span>
       </p>
     </div>
-    <script src="script.js"></script>
+    <script src="script2.js"></script>
   </body>
 </html>

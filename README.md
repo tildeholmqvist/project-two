@@ -1,39 +1,31 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# European Capital Cities - Quiz
 
-Welcome,
+This is a website containing an online quiz letting the user test their skills and knowledge about European capital cities.
+The site is created for the audience that wants to test their own knowledge or their loved ones, on ten different european capital cities.  
 
-This is the Code Institute student template for Codeanywhere. If you are using Gitpod then you need [this template](https://github.com/Code-Institute-Org/gitpod-full-template) instead.  We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+The site includes a firstpage with a clean layout and a button to start the quiz, and a quizpage where the different questions is showed. 
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **August 30th, 2023**
 
-## Codeanywhere Reminders
+The link to my webpage can be found here -
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+![Screenshot of my webpage from Am I responsive?]
 
-`python3 -m http.server`
+## Site Owner Goals
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+- To give the user the option to easily access the quiz. 
+- To provide the user with a short but fun quiz about European Capital Cities. 
+- To present the user with a website that is easy to navigate, fully responsive and that contains a simple and easy layout, fitting for the websites theme. 
+- To allow the user to see their results and the right answers after submitting their answers.
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+## User Stories
 
-`http_server`
+- ### First time user
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+  - As a first time user I want to easily access the quiz. 
+  - As a first time user I want to be able to easly navigate through the different questions on the quiz. 
+  - As a first time user I want to submit the quiz and get my result. 
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+- ### Returning User
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
-
----
-
-Happy coding!
+  - As a returning user I want to easily navigate back to the firstpage to start the quiz over again. 
+  - As a returning user I want to be able to to the quiz again and get a higher result. 
