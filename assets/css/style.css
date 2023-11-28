@@ -302,3 +302,11 @@ a {
         height: 100%;
     }
 }
+
+.option {
+    display: block;
+    width: 150px;
+    margin-top: 12px;
+    text-align: center;
+    padding: 5px;
+}

@@ -1,6 +1,5 @@
 let quizQuestions = [
     {
-        numb: 1,
         question: "What's the capital of France?",
         answers: {
             A: "Marseille",
@@ -10,7 +9,6 @@ let quizQuestions = [
         correctAnswer: "B"
     },
     {
-        numb: 2,
         question: "What's the capital of Spain?",
         answers: {
             A: "Madrid",
@@ -20,7 +18,6 @@ let quizQuestions = [
         correctAnswer: "A"
     },
     {
-        numb: 3,
         question: "What's the capital of Germany?",
         answers: {
             A: "Hamburg",
@@ -30,7 +27,6 @@ let quizQuestions = [
         correctAnswer: "C"
     },
     {
-        numb: 4,
         question: "What's the capital of Norway?",
         answers: {
             A: "Oslo",
@@ -40,7 +36,6 @@ let quizQuestions = [
         correctAnswer: "A"
     },
     {
-        numb: 5,
         question: "What's the capital of Greece?",
         answers: {
             A: "Sparta",
@@ -50,7 +45,6 @@ let quizQuestions = [
         correctAnswer: "B"
     },
     {
-        numb: 6,
         question: "What's the capital of Portugal?",
         answers: {
             A: "Porto",
@@ -60,7 +54,6 @@ let quizQuestions = [
         correctAnswer: "B"
     },
     {
-        numb: 7,
         question: "What's the capital of Italy?",
         answers: {
             A: "Venice",
@@ -70,7 +63,6 @@ let quizQuestions = [
         correctAnswer: "C"
     },
     {
-        numb: 8,
         question: "What's the capital of Czech Republic?",
         answers: {
             A: "Brno",
@@ -80,7 +72,6 @@ let quizQuestions = [
         correctAnswer: "B"
     },
     {
-        numb: 9,
         question: "What's the capital of Sweden?",
         answers: {
             A: "Gothenburg",
@@ -90,7 +81,6 @@ let quizQuestions = [
         correctAnswer: "C"
     },
     {
-        numb: 10,
         question: "What's the capital of Austria?",
         answers: {
             A: "Vienna",
@@ -99,7 +89,12 @@ let quizQuestions = [
         },
         correctAnswer: "A"
     }
+
 ];
+
+let submitButton;
+let currentQuestionIndex = 0;
+let currentQuestion = quizQuestions[currentQuestionIndex];
 
 /**
  * This code is from https://www.sitepoint.com/simple-javascript-quiz/
@@ -107,6 +102,22 @@ let quizQuestions = [
  * quiz wasn't working how I wanted it too.. 
  * I wished for the questions to not be on top of eachother, but in a loop, this was the most convinent way I found
  */
+
+function displayQuestion(currentQuestion) {
+    document.getElementById('question-text').innerHTML = currentQuestion.question;
+    document.getElementById('option1').innerHTML = currentQuestion.answers.A;
+    document.getElementById('option2').innerHTML = currentQuestion.answers.B;
+    document.getElementById('option3').innerHTML = currentQuestion.answers.C;
+}
+
+function getNextQuestion() {
+    if (quizQuestions.length > currentQuestionIndex + 1) {
+        currentQuestionIndex = currentQuestionIndex + 1;
+        return quizQuestions[currentQuestionIndex];
+    }
+    return false;
+}
+
 
 function buildQuiz() {
     const quizContainer = document.getElementById('quiz');
@@ -129,8 +140,16 @@ function buildQuiz() {
             </div>`;
     });
 
+    output += `
+        <div class="slide" style="display: none;">
+            <div class="question">Good Job! <br> Submit and see how you did!</div>
+        </div>`;
+
 
     quizContainer.innerHTML = output;
+
+    // this code is made with help from https://www.w3schools.com/howto/howto_js_slideshow.asp 
+    //and https://www.sitepoint.com/simple-javascript-quiz/
 
     const slides = document.querySelectorAll('.slide');
     let currentSlide = 0;
@@ -148,74 +167,85 @@ function buildQuiz() {
     }
 
     function showNextSlide() {
-        let currentSlideElement = slides[currentSlide];
-        let radios = currentSlideElement.querySelectorAll('input[type="radio"]:checked');
-
-        if (radios.length > 0) {
-            currentSlideElement.style.display = 'none';
-
+        if (currentSlide < slides.length - 1) {
             currentSlide++;
-            if (currentSlide < slides.length) {
-                slides[currentSlide].style.display = 'block';
-            } else {
-                showResults();
-            }
-        } else {
-            alert('Please select your answer before moving to the next question! :)');
+            showSlide(currentSlide);
         }
     }
 
-    slides.forEach(slide => {
-        const radios = slide.querySelectorAll('input[type="radio"]');
-        radios.forEach(radio => {
-            radio.addEventListener('change', showNextSlide);
-        });
-    });
-
-    function showResults() {
-        let slides = document.querySelectorAll('.slide');
-        let numQuestions = quizQuestions.length;
-        let numCorrect = 0;
-        let incorrectAnswers = '';
-
-        let answeredQuestions = 0;
-
-        slides.forEach((slide, questionNumber) => {
-            if (questionNumber < numQuestions) {
-                let selector = `input[name=question${questionNumber}]:checked`;
-                let userAnswer = slide.querySelector(selector);
-
-                if (userAnswer !== null) {
-                    answeredQuestions++;
-                    userAnswer = userAnswer.value.toUpperCase();
-                    let correctAnswer = quizQuestions[questionNumber].correctAnswer.toUpperCase();
-                    if (userAnswer === correctAnswer) {
-                        numCorrect++;
-                    } else {
-                        incorrectAnswers += `Question ${questionNumber + 1}: The correct answer is ${quizQuestions[questionNumber].answers[quizQuestions[questionNumber].correctAnswer]}\n`;
-                    }
-                }
-            }
-        });
-
-        if (answeredQuestions < numQuestions) {
-            alert(`You have answered ${answeredQuestions} out of ${numQuestions} questions. Please provide all of your answers before submitting! :)`);
-            return;
+    function showPreviousSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+            showSlide(currentSlide);
         }
+    }
 
-        if (incorrectAnswers !== '') {
-            alert(`You need to practice some more...
-         ${numCorrect} out of ${quizQuestions.length} correct!\n\nIncorrect Answers:\n${incorrectAnswers}`);
-        } else {
-            alert(`Wow! Good Job! You really know your capital cities!
-         You got all ${quizQuestions.length} questions right! :D`);
-        }
+    let previousButton = document.getElementById('previous');
+    let nextButton = document.getElementById('next');
 
-        const scoreboard = document.getElementById('score');
-        scoreboard.textContent = numCorrect;
+    previousButton.addEventListener('click', showPreviousSlide);
+    nextButton.addEventListener('click', showNextSlide);
+
+    if (slides.length > 1) {
+        nextButton.style.display = 'inline-block';
+        previousButton.style.display = 'inline-block';
+
+    } else {
+        nextButton.style.display = 'none';
+        previousButton.style.display = 'none';
+
     }
 }
 
+function showResults() {
+    let slides = document.querySelectorAll('.slide');
+    let numQuestions = quizQuestions.length;
+    let numCorrect = 0;
+    let incorrectAnswers = '';
+
+    let answeredQuestions = 0;
+
+    slides.forEach((slide, questionNumber) => {
+        if (questionNumber < numQuestions) {
+            let selector = `input[name=question${questionNumber}]:checked`;
+            let userAnswer = slide.querySelector(selector);
+
+            if (userAnswer !== null) {
+                answeredQuestions++;
+                userAnswer = userAnswer.value.toUpperCase();
+                let correctAnswer = quizQuestions[questionNumber].correctAnswer.toUpperCase();
+                if (userAnswer === correctAnswer) {
+                    numCorrect++;
+                } else {
+                    incorrectAnswers += `Question ${questionNumber + 1}: The correct answer is ${quizQuestions[questionNumber].answers[quizQuestions[questionNumber].correctAnswer]}\n`;
+                }
+            }
+        }
+    });
+
+    if (answeredQuestions < numQuestions) {
+        alert(`You have answered ${answeredQuestions} out of ${numQuestions} questions. Please provide all of your answers before submitting! :)`);
+        return;
+    }
+
+    if (incorrectAnswers !== '') {
+        alert(`You need to practice some more...
+         ${numCorrect} out of ${quizQuestions.length} correct!\n\nIncorrect Answers:\n${incorrectAnswers}`);
+    } else {
+        alert(`Wow! Good Job! You really know your capital cities!
+         You got all ${quizQuestions.length} questions right! :D`);
+    }
+
+    const scoreboard = document.getElementById('score');
+    scoreboard.textContent = numCorrect;
+}
+
+//buildQuiz();
+
 document.addEventListener('DOMContentLoaded', function () {
-    buildQuiz();
+
+    //let submitButton = document.getElementById('submit');
+    //console.log(submitButton);
+    //submitButton.addEventListener('click', showResults);
+    displayQuestion(currentQuestion);
 });

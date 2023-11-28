@@ -17,13 +17,18 @@
     </header>
     <!--This code is partly from https://www.sitepoint.com/simple-javascript-quiz/
     to get the right result for my quiz with my javascript-->
-    <div class="quiz-container">
-      <div id="quiz" class="quiz-questions">
-        <h3 id="question-text">Question</h3>
-        <button id="option1">01</button>
-        <button id="option2">02</button>
-        <button id="option3">03</button>
+    <div class="quiz-questions">
+      <div id="quiz" class="quiz-container">
+        <div class="slide" style="display: block">
+          <h3 class="question" id="question-text">Question</h3>
+          <div class="answers">
+            <button class="option" id="option1">O1</button>
+            <button class="option" id="option2">O2</button>
+            <button class="option" id="option3">O3</button>
+          </div>
         </div>
+      </div>
+    </div>
     <div id="result"></div>
     <div class="score-area">
       <p class="scores">
