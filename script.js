@@ -124,7 +124,7 @@ function buildQuiz() {
         }
         output += `
             <div class="slide" style="display: none;">
-                <div class="question">${currentQuestion.question}</div>
+                <div class="question">${currentQuestion.numb}: ${currentQuestion.question}</div>
                 <div class="answers">${answers.join('')}</div>
             </div>`;
     });
@@ -175,7 +175,6 @@ function buildQuiz() {
         let numQuestions = quizQuestions.length;
         let numCorrect = 0;
         let incorrectAnswers = '';
-
         let answeredQuestions = 0;
 
         slides.forEach((slide, questionNumber) => {
@@ -196,13 +195,14 @@ function buildQuiz() {
             }
         });
 
-        console.log("Answered Questions:", answeredQuestions);
-        console.log("Correct Answers:", numCorrect);
-
         if (answeredQuestions < numQuestions) {
             alert(`You have answered ${answeredQuestions} out of ${numQuestions} questions. Please provide all of your answers before submitting! :)`);
             return;
         }
+
+        const scoreboard = document.getElementById('score');
+        scoreboard.textContent = numCorrect;
+
         if (incorrectAnswers !== '') {
             alert(`You need to practice some more...
          ${numCorrect} out of ${quizQuestions.length} correct!\n\nIncorrect Answers:\n${incorrectAnswers}`);
@@ -211,19 +211,19 @@ function buildQuiz() {
          You got all ${quizQuestions.length} questions right! :D`);
         }
 
-        const scoreboard = document.getElementById('score');
-        scoreboard.textContent = numCorrect;
+        const restartButton = document.createElement("button");
+        restartButton.textContent = "Try Again?";
+        restartButton.addEventListener("click", () => {
+            restartQuiz();
+        });
 
-        console.log("Number of Slides:", slides.length);
-
-        if (numQuestions < slides.length) {
-            slides[numQuestions].style.display = 'block';
-            slides[numQuestions].scrollIntoView({ behavior: 'smooth' });
-        }
+        quizContainer.appendChild(restartButton);
+    }
+    function restartQuiz() {
+        quizContainer.innerHTML = '';
+        buildQuiz();
     }
 }
-
-
 document.addEventListener('DOMContentLoaded', function () {
     buildQuiz();
 });
