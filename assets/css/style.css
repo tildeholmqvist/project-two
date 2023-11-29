@@ -184,6 +184,17 @@ a {
     padding: 2px;
 }
 
+#tryagain {
+    padding: 20px 40px;
+    font-size: 24px;
+    background-color: #ffff;
+    color: black;
+    border: none;
+    font-family: 'Roboto Condensed',
+        sans-serif;
+    ;
+    text-transform: uppercase;
+}
 
 @media screen and (max-width: 540px) {
 

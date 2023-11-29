@@ -213,6 +213,7 @@ function buildQuiz() {
 
         const restartButton = document.createElement("button");
         restartButton.textContent = "Try Again?";
+        restartButton.id = "tryagain";
         restartButton.addEventListener("click", () => {
             restartQuiz();
         });
