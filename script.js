@@ -101,12 +101,31 @@ let quizQuestions = [
     }
 ];
 
+let submitButton;
+let currentQuestionIndex = 0;
+let currentQuestion = quizQuestions[currentQuestionIndex];
+
 /**
  * This code is from https://www.sitepoint.com/simple-javascript-quiz/
  * I took help from that site to get the result that I wished for, since the 
  * quiz wasn't working how I wanted it too.. 
  * I wished for the questions to not be on top of eachother, but in a loop, this was the most convinent way I found
  */
+
+function displayQuestion(currentQuestion) {
+    document.getElementById('question-text').innerHTML = currentQuestion.question;
+    document.getElementById('option1').innerHTML = currentQuestion.answers.A;
+    document.getElementById('option2').innerHTML = currentQuestion.answers.B;
+    document.getElementById('option3').innerHTML = currentQuestion.answers.C;
+}
+
+function getNextQuestion() {
+    if (quizQuestions.length > currentQuestionIndex + 1) {
+        currentQuestionIndex = currentQuestionIndex + 1;
+        return quizQuestions[currentQuestionIndex];
+    }
+    return false;
+}
 
 function buildQuiz() {
     const quizContainer = document.getElementById('quiz');
@@ -129,8 +148,10 @@ function buildQuiz() {
             </div>`;
     });
 
-
     quizContainer.innerHTML = output;
+
+    // this code is made with help from https://www.w3schools.com/howto/howto_js_slideshow.asp 
+    //and https://www.sitepoint.com/simple-javascript-quiz/
 
     const slides = document.querySelectorAll('.slide');
     let currentSlide = 0;

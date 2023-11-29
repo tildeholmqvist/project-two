@@ -195,7 +195,35 @@ function buildQuiz() {
         previousButton.style.display = 'none';
 
     }
+    const radioInputs = document.querySelectorAll('input[type="radio"]');
+    radioInputs.forEach(input => {
+        input.addEventListener('change', updateScore);
+    });
+    function updateScore() {
+        let slides = document.querySelectorAll('.slide');
+        let numCorrect = 0;
+
+        slides.forEach((slide, questionNumber) => {
+            let selector = `input[name=question${questionNumber}]:checked`;
+            let userAnswer = slide.querySelector(selector);
+
+            if (userAnswer !== null) {
+                userAnswer = userAnswer.value.toUpperCase();
+                let correctAnswer = quizQuestions[questionNumber].correctAnswer.toUpperCase();
+                if (userAnswer === correctAnswer) {
+                    numCorrect++;
+                }
+            }
+        });
+
+        const scoreboard = document.getElementById('score');
+        scoreboard.textContent = numCorrect;
+    }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    buildQuiz();
+});
 
 function showResults() {
     let slides = document.querySelectorAll('.slide');
