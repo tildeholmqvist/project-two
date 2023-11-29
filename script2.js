@@ -213,6 +213,7 @@ function buildQuiz() {
                 if (userAnswer === correctAnswer) {
                     numCorrect++;
                 }
+                showNextSlide();
             }
         });
 
