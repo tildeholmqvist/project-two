@@ -196,7 +196,7 @@ a {
     text-transform: uppercase;
     border-style: solid;
     border-width: 10px;
-    border-color: #202020;
+    border-color: #75D1FF;
 
 }
 
@@ -324,4 +324,22 @@ a {
     margin-top: 12px;
     text-align: center;
     padding: 5px;
+}
+
+.answers button {
+    width: 80%;
+    padding: 5px;
+    margin-left: 10%;
+    display: block;
+    margin-top: 10px;
+}
+
+.red {
+    background-color: red;
+    ;
+}
+
+.green {
+    background-color: green;
+    ;
 }

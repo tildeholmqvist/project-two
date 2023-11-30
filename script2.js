@@ -95,13 +95,8 @@ let quizQuestions = [
 let submitButton;
 let currentQuestionIndex = 0;
 let currentQuestion = quizQuestions[currentQuestionIndex];
+let score = 0;
 
-/**
- * This code is from https://www.sitepoint.com/simple-javascript-quiz/
- * I took help from that site to get the result that I wished for, since the 
- * quiz wasn't working how I wanted it too.. 
- * I wished for the questions to not be on top of eachother, but in a loop, this was the most convinent way I found
- */
 
 function displayQuestion(currentQuestion) {
     document.getElementById('question-text').innerHTML = currentQuestion.question;
@@ -118,113 +113,6 @@ function getNextQuestion() {
     return false;
 }
 
-
-function buildQuiz() {
-    const quizContainer = document.getElementById('quiz');
-    let output = '';
-
-    quizQuestions.forEach((currentQuestion, questionNumber) => {
-        let answers = [];
-        for (let letter in currentQuestion.answers) {
-            answers.push(
-                `<label>
-                    <input type="radio" name="question${questionNumber}" value="${letter}">
-                    ${letter} : ${currentQuestion.answers[letter]}
-                </label>`
-            );
-        }
-        output += `
-            <div class="slide" style="display: none;">
-                <div class="question">${currentQuestion.question}</div>
-                <div class="answers">${answers.join('')}</div>
-            </div>`;
-    });
-
-    output += `
-        <div class="slide" style="display: none;">
-            <div class="question">Good Job! <br> Submit and see how you did!</div>
-        </div>`;
-
-
-    quizContainer.innerHTML = output;
-
-    // this code is made with help from https://www.w3schools.com/howto/howto_js_slideshow.asp 
-    //and https://www.sitepoint.com/simple-javascript-quiz/
-
-    const slides = document.querySelectorAll('.slide');
-    let currentSlide = 0;
-
-    showSlide(currentSlide);
-
-    function showSlide(n) {
-        slides.forEach((slide, index) => {
-            if (index === n) {
-                slide.style.display = 'block';
-            } else {
-                slide.style.display = 'none';
-            }
-        });
-    }
-
-    function showNextSlide() {
-        if (currentSlide < slides.length - 1) {
-            currentSlide++;
-            showSlide(currentSlide);
-        }
-    }
-
-    function showPreviousSlide() {
-        if (currentSlide > 0) {
-            currentSlide--;
-            showSlide(currentSlide);
-        }
-    }
-
-    let previousButton = document.getElementById('previous');
-    let nextButton = document.getElementById('next');
-
-    previousButton.addEventListener('click', showPreviousSlide);
-    nextButton.addEventListener('click', showNextSlide);
-
-    if (slides.length > 1) {
-        nextButton.style.display = 'inline-block';
-        previousButton.style.display = 'inline-block';
-
-    } else {
-        nextButton.style.display = 'none';
-        previousButton.style.display = 'none';
-
-    }
-    const radioInputs = document.querySelectorAll('input[type="radio"]');
-    radioInputs.forEach(input => {
-        input.addEventListener('change', updateScore);
-    });
-    function updateScore() {
-        let slides = document.querySelectorAll('.slide');
-        let numCorrect = 0;
-
-        slides.forEach((slide, questionNumber) => {
-            let selector = `input[name=question${questionNumber}]:checked`;
-            let userAnswer = slide.querySelector(selector);
-
-            if (userAnswer !== null) {
-                userAnswer = userAnswer.value.toUpperCase();
-                let correctAnswer = quizQuestions[questionNumber].correctAnswer.toUpperCase();
-                if (userAnswer === correctAnswer) {
-                    numCorrect++;
-                }
-                showNextSlide();
-            }
-        });
-
-        const scoreboard = document.getElementById('score');
-        scoreboard.textContent = numCorrect;
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    buildQuiz();
-});
 
 function showResults() {
     let slides = document.querySelectorAll('.slide');
@@ -269,12 +157,39 @@ function showResults() {
     scoreboard.textContent = numCorrect;
 }
 
-//buildQuiz();
+function answerQuestion(event) {
+    const clickedButton = event.target;
+    const answer = clickedButton.getAttribute("data-option");
+    if (answer === currentQuestion.correctAnswer) {
+        score = score + 1;
+        console.info('Correct');
+        event.target.classList.add('green');
+    } else {
+        console.info('Incorrect');
+        event.target.classList.add('red');
+    }
+    const nextQuestion = getNextQuestion();
+    if (nextQuestion === false) {
+        alert('End of quiz');
+    } else {
+        currentQuestion = nextQuestion;
+        setTimeout(() => {
+            const optionButtons = document.querySelectorAll('button.option');
+            optionButtons.forEach((option) => {
+                option.classList.remove('green');
+                option.classList.remove('red');
+            });
+            displayQuestion(currentQuestion);
+        }, 2000);
+    }
+    document.getElementById('score').innerHTML = score;
+
+}
 
 document.addEventListener('DOMContentLoaded', function () {
-
-    //let submitButton = document.getElementById('submit');
-    //console.log(submitButton);
-    //submitButton.addEventListener('click', showResults);
+    const optionButtons = document.querySelectorAll('button.option');
+    optionButtons.forEach((option) => {
+        option.addEventListener('click', answerQuestion);
+    });
     displayQuestion(currentQuestion);
 });
