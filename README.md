@@ -38,13 +38,13 @@ Wireframes were produced using Balsamiq.
 
  <summary>Desktop Wireframe</summary>
 
-![Desktop Wireframe]()
+![Desktop Wireframe](assets/images/wireframedesktop.png)
  </details>
 
  <details>
     <summary>Mobile Wireframe</summary>
 
-![Mobile Wireframe]()
+![Mobile Wireframe](assets/images/wireframeiphone.png)
  </details>
 
 ## Features
@@ -54,6 +54,7 @@ Wireframes were produced using Balsamiq.
 #### Quiz Page
 - A quiz about European capital cities, including 10 questions
 - A scoreboard
+- A Restart Button
 
 ## First Page 
 
