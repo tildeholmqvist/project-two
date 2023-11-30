@@ -270,19 +270,6 @@ a {
 
     }
 
-    #previous,
-    #next,
-    #submit {
-        font-family: 'Roboto Condensed',
-            sans-serif;
-        color: black;
-        background-color: #fff;
-        border: black 2px solid;
-        padding: 10px;
-        font-size: 15px;
-        margin-top: 30px;
-    }
-
     .score-area {
         font-size: 100%;
         text-align: center;
