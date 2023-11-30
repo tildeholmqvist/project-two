@@ -155,7 +155,10 @@ function answerQuestion(event) {
     }
     const nextQuestion = getNextQuestion();
     if (nextQuestion === false) {
-        alert('Good job finishing the quiz! Do you wanna try again, click on the restart button :)');
+        setTimeout(() => {
+            showResults();
+            alert('Good job finishing the quiz! Do you wanna try again, click on the restart button :)');
+        }, 100);
     } else {
         currentQuestion = nextQuestion;
         setTimeout(() => {

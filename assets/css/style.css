@@ -210,7 +210,8 @@ a {
 }
 
 #restart:hover {
-    background-color: pink;
+    background-color: #75D1FF;
+    color: #fff;
 }
 
 #restart a {
