@@ -92,7 +92,6 @@ let quizQuestions = [
 
 ];
 
-let submitButton;
 let currentQuestionIndex = 0;
 let currentQuestion = quizQuestions[currentQuestionIndex];
 let score = 0;
@@ -118,7 +117,6 @@ function showResults() {
     let slides = document.querySelectorAll('.slide');
     let numQuestions = quizQuestions.length;
     let numCorrect = 0;
-    let incorrectAnswers = '';
 
     let answeredQuestions = 0;
 

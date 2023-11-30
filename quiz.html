@@ -17,14 +17,26 @@
     <!--This code is partly from https://www.sitepoint.com/simple-javascript-quiz/
     to get the right result for my quiz with my javascript-->
     <div class="quiz-questions">
-      <div id="quiz" class="quiz-container"></div>
+      <div id="quiz" class="quiz-container">
+        <div class="slide" style="display: block">
+          <h3 class="question" id="question-text">Question</h3>
+          <div class="answers">
+            <button class="option" id="option1" data-option="A">O1</button>
+            <button class="option" id="option2" data-option="B">O2</button>
+            <button class="option" id="option3" data-option="C">O3</button>
+          </div>
+        </div>
+      </div>
     </div>
     <div id="result"></div>
-    <div class="score-area">
-      <p class="scores">
-        You got this many right answers: <span id="score">0</span>
-      </p>
+    <div class="score-container">
+      <div class="score-area">
+        <p class="scores">
+          You got this many right answers: <span id="score">0</span>
+        </p>
+      </div>
+      <button id="restart"><a href="quiz.html">Restart</a></button>
     </div>
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
   </body>
 </html>
