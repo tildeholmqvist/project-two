@@ -96,7 +96,6 @@ let currentQuestionIndex = 0;
 let currentQuestion = quizQuestions[currentQuestionIndex];
 let score = 0;
 
-
 function displayQuestion(currentQuestion) {
     document.getElementById('question-text').innerHTML = currentQuestion.question;
     document.getElementById('option1').innerHTML = currentQuestion.answers.A;

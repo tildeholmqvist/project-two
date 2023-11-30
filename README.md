@@ -3,12 +3,14 @@
 This is a website containing an online quiz letting the user test their skills and knowledge about European capital cities.
 The site is created for the audience that wants to test their own knowledge or their loved ones, on ten different european capital cities.  
 
-The site includes a firstpage with a clean layout and a button to start the quiz, and a quizpage where the different questions is showed. 
+The site includes a firstpage with a clean layout and a button to start the quiz, and a quizpage where the different questions is showed with a scoreboard and a button, allowing the user to restart the quiz. 
 
 
 The link to my webpage can be found here - [European Capital Cities](<https://tildeholmqvist.github.io/project-two/>)
 
 ![Screenshot of my webpage from Am I responsive?](/assets/images/amiresponsivefirstpage.png)
+
+![Screenshot of my webpage from Am I responsive?](/assets/images/amiresponsivequiz.png)
 
 ## Site Owner Goals
 
@@ -58,7 +60,7 @@ Wireframes were produced using Balsamiq.
 
 ## First Page 
 
-The first page includes an big image depicting the globe, a header including with an easy layout and a button to start the quiz. 
+The first page includes an big image depicting the globe, a header with an easy layout, and a button to start the quiz. 
 
 ![Screenshot of my webpage from Am I responsive?](/assets/images/amiresponsivefirstpage.png)
 
@@ -66,6 +68,8 @@ The first page includes an big image depicting the globe, a header including wit
 
 The quiz page has the same design and layout as the first page, but also includes 10 different slides, each with a quiz question and three suggested answers. 
 Under the questionbox the user can find their scoreboard that will tell the user how many right answer they had, after completing the quiz. 
+
+![Screenshot of my webpage from Am I responsive?](/assets/images/amiresponsivequiz.png)
 
 # Layout & Design
 
@@ -75,16 +79,17 @@ For a first time visitor the webpage appears structured, with pleasing colours.
 #### Colours
 
 The colorscheme for the site is in the blue spectra, beacuse it's a fitting color for the websites theme and purpose. 
-Blue color also comes with a calming effect, wich is a good thing when the user is gonna test their knowledge. 
+The color blue is both easy for the eye, kind and aesthetically nice.
 
 The questionbox is in black and white to make it easy to read and more accessible for the user. 
+The answer is in boxes with the borders of the same blue color as the rest of the site. 
 
 #### Images
 
 The image that is being used on the site is an image depicting a hand-painted picture of the earth. 
 It contains the same colors as the websites colourscheme. 
 
-The image is borrowed from [Unsplash](https://www.pexels.com/sv-se/sok/reading/).
+The image is borrowed from [Unsplash](https://unsplash.com/photos/blue-green-and-yellow-abstract-painting-znhEe1cbbQE).
 
 #### Fonts
 
@@ -106,3 +111,69 @@ The technologies that is beeing used on this project is:
 - JavaScript
 
 # Testing
+
+## W3C Validator HTML
+
+KOLLA OM DU KA FIAX DEN DU HAR 
+
+[W3C Validator](https://validator.w3.org/)
+
+## W3C Validator CSS
+
+No errors where found in my css.
+
+[W3C Validator CSS](https://jigsaw.w3.org/css-validator/)
+
+## JS Hint 
+Metrics
+There are 10 functions in this file.
+
+Function with the largest signature take 2 arguments, while the median is 0.5.
+
+Largest function has 14 statements in it, while the median is 3.5.
+
+The most complex function has a cyclomatic complexity value of 4 while the median is 1.
+
+## Lighthouse
+
+![Screenshot of my lighthouse score]()
+
+When the website was 
+
+## Broswer Testing
+
+The webpage has been tested on different broswers such as Google Chrome, Safari and Firefox and is working correctly.
+
+## Device Testing
+
+The webpage has been tested on different devices such as Iphone, Ipad, MacBook Pro and iMac, and is working correctly.
+
+## Responsiveness
+
+The webpage responsiveness has been tested through the Google Chrom Dev Tool, [Am I Responsive?](https://ui.dev/amiresponsive) and [Responsinator](http://www.responsinator.com/) and is working correctly.
+
+## Quiz Testing
+
+
+## Testing of the alert
+
+# Bugs and Issues
+
+
+
+# Unfixed Bugs
+
+# Deployment
+
+The website was deployed through the hosting platform GitHub. 
+How to deploy through GitHub: 
+- Go to GitHub.com .
+- Select the repository.
+- Once your in the repository, select settings at the top of the page to the right. 
+- In the menu to your left, go into "pages". 
+- Under "Branch" use the dropdown menu and select "main" and "/root", and save. 
+- When it's saved you will get the link to your active website. 
+
+Here you can mind the active link for []()
+
+# Credits 
