@@ -171,7 +171,6 @@ function answerQuestion(event) {
         }, 2000);
     }
     document.getElementById('score').innerHTML = score;
-
 }
 
 document.addEventListener('DOMContentLoaded', function () {
