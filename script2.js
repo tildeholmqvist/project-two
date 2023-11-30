@@ -133,25 +133,10 @@ function showResults() {
                 let correctAnswer = quizQuestions[questionNumber].correctAnswer.toUpperCase();
                 if (userAnswer === correctAnswer) {
                     numCorrect++;
-                } else {
-                    incorrectAnswers += `Question ${questionNumber + 1}: The correct answer is ${quizQuestions[questionNumber].answers[quizQuestions[questionNumber].correctAnswer]}\n`;
                 }
             }
         }
     });
-
-    if (answeredQuestions < numQuestions) {
-        alert(`You have answered ${answeredQuestions} out of ${numQuestions} questions. Please provide all of your answers before submitting! :)`);
-        return;
-    }
-
-    if (incorrectAnswers !== '') {
-        alert(`You need to practice some more...
-         ${numCorrect} out of ${quizQuestions.length} correct!\n\nIncorrect Answers:\n${incorrectAnswers}`);
-    } else {
-        alert(`Wow! Good Job! You really know your capital cities!
-         You got all ${quizQuestions.length} questions right! :D`);
-    }
 
     const scoreboard = document.getElementById('score');
     scoreboard.textContent = numCorrect;
@@ -162,15 +147,15 @@ function answerQuestion(event) {
     const answer = clickedButton.getAttribute("data-option");
     if (answer === currentQuestion.correctAnswer) {
         score = score + 1;
-        console.info('Correct');
+        console.info('That was right!');
         event.target.classList.add('green');
     } else {
-        console.info('Incorrect');
+        console.info('That was the wrong answer..');
         event.target.classList.add('red');
     }
     const nextQuestion = getNextQuestion();
     if (nextQuestion === false) {
-        alert('End of quiz');
+        alert('Good job finishing the quiz! Do you wanna try again, click on the restart button :)');
     } else {
         currentQuestion = nextQuestion;
         setTimeout(() => {
