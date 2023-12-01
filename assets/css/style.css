@@ -332,33 +332,13 @@ a {
 @media screen and (max-width: 440px) {
 
     #start-quiz {
-        position: absolute;
-        top: 55%;
-        left: 50%;
-        padding: 20px 40px;
-        font-size: 18px;
-        background-color: #75D1FF;
-        color: #fff;
-        border: none;
-        border-radius: 10px;
-        align-items: center;
-        transform: translate(-50%, -50%);
+   font-size: 18px;
     }
 }
 
 @media screen and (max-width: 370px) {
 
     #start-quiz {
-        position: absolute;
-        top: 55%;
-        left: 50%;
-        padding: 20px 40px;
-        font-size: 13px;
-        background-color: #75D1FF;
-        color: #fff;
-        border: none;
-        border-radius: 10px;
-        align-items: center;
-        transform: translate(-50%, -50%);
+   font-size: 13px;
     }
 }

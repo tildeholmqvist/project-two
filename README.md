@@ -6,7 +6,7 @@ The site is created for the audience that wants to test their own knowledge or t
 The site includes a firstpage with a clean layout and a button to start the quiz, and a quizpage where the different questions is showed with a scoreboard and a button, allowing the user to restart the quiz. 
 
 
-The link to my webpage can be found here - [European Capital Cities](<https://tildeholmqvist.github.io/project-two/>)
+The link to my webpage can be found here - [European Capital Cities](<https://tildeholmqvist.github.io/project-two/>).
 
 ![Screenshot of my webpage from Am I responsive?](/assets/images/amiresponsivefirstpage.png)
 
@@ -67,9 +67,13 @@ The first page includes an big image depicting the globe, a header with an easy 
 ## Quiz Page
 
 The quiz page has the same design and layout as the first page, but also includes 10 different slides, each with a quiz question and three suggested answers. 
-Under the questionbox the user can find their scoreboard that will tell the user how many right answer they had, after completing the quiz. 
+Under the questionbox the user can find their scoreboard that will tell the user how many right answer they had, after completing the quiz and a alert showing telling the user to click the restart button to try again. 
 
 ![Screenshot of my webpage from Am I responsive?](/assets/images/amiresponsivequiz.png)
+
+![Screenshot of the alert](/assets/images/quizalert.png)
+
+![Screenshot of my webpage from Am I responsive?](/assets/images/quizandresult.png)
 
 # Layout & Design
 
@@ -174,6 +178,6 @@ How to deploy through GitHub:
 - Under "Branch" use the dropdown menu and select "main" and "/root", and save. 
 - When it's saved you will get the link to your active website. 
 
-Here you can mind the active link for []()
+Here you can mind the active link for [European Capital Cities](<https://tildeholmqvist.github.io/project-two/>).
 
 # Credits 
