@@ -75,10 +75,6 @@ Under the questionbox the user can find their scoreboard that will tell the user
 
 ![Screenshot of my webpage from Am I responsive?](/assets/images/amiresponsivequiz.png)
 
-![Screenshot of the alert](/assets/images/quizalert.png)
-
-![Screenshot of my webpage from Am I responsive?](/assets/images/quizandresult.png)
-
 # Layout & Design
 
 My layout is simple, clean and easy to navigate through.
