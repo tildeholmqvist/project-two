@@ -95,6 +95,7 @@ let quizQuestions = [
 let currentQuestionIndex = 0;
 let currentQuestion = quizQuestions[currentQuestionIndex];
 let score = 0;
+let blocked = false;
 
 function displayQuestion(currentQuestion) {
     document.getElementById('question-text').innerHTML = currentQuestion.question;
@@ -140,34 +141,37 @@ function showResults() {
 }
 
 function answerQuestion(event) {
-    const clickedButton = event.target;
-    const answer = clickedButton.getAttribute("data-option");
-    if (answer === currentQuestion.correctAnswer) {
-        score = score + 1;
-        console.info('That was right!');
-        event.target.classList.add('green');
-    } else {
-        console.info('That was the wrong answer..');
-        event.target.classList.add('red');
+    if (blocked == false) {
+        blocked = true;
+        const clickedButton = event.target;
+        const answer = clickedButton.getAttribute("data-option");
+        if (answer === currentQuestion.correctAnswer) {
+            score = score + 1;
+            event.target.classList.add('green');
+        } else {
+            event.target.classList.add('red');
+        }
+        const nextQuestion = getNextQuestion();
+        if (nextQuestion === false) {
+            setTimeout(() => {
+                showResults();
+                alert('Good job finishing the quiz! Do you wanna try again, click on the restart button :)');
+                blocked = false;
+            }, 100);
+        } else {
+            currentQuestion = nextQuestion;
+            setTimeout(() => {
+                const optionButtons = document.querySelectorAll('button.option');
+                optionButtons.forEach((option) => {
+                    option.classList.remove('green');
+                    option.classList.remove('red');
+                });
+                displayQuestion(currentQuestion);
+                blocked = false;
+            }, 2000);
+        }
+        document.getElementById('score').innerHTML = score;
     }
-    const nextQuestion = getNextQuestion();
-    if (nextQuestion === false) {
-        setTimeout(() => {
-            showResults();
-            alert('Good job finishing the quiz! Do you wanna try again, click on the restart button :)');
-        }, 100);
-    } else {
-        currentQuestion = nextQuestion;
-        setTimeout(() => {
-            const optionButtons = document.querySelectorAll('button.option');
-            optionButtons.forEach((option) => {
-                option.classList.remove('green');
-                option.classList.remove('red');
-            });
-            displayQuestion(currentQuestion);
-        }, 2000);
-    }
-    document.getElementById('score').innerHTML = score;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
