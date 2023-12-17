@@ -137,7 +137,7 @@ No errors were found in my JavaScript[Jshint validator](https://jshint.com/)
 - The following metrics were returned:
   - There are 10 functions in this file.
   - Function with the largest signature take 2 arguments, while the median is 0.5.
-  - Largets function has 14 statements in it, while the median is 3.5.
+  - Largets function has 14 statements in it, while the median is 4.
   - The most complex function has a cyclomatic complexity value of 4 while the median is 1.
 
 ## Lighthouse
